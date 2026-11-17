@@ -7,11 +7,12 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 DATABASE_URL = os.environ["DATABASE_URL"]
+ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[ALLOWED_ORIGINS],
     allow_methods=["*"],
     allow_headers=["*"],
 )

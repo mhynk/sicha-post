@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 
 export default function App() {
-  const [status, setStatus] = useState("확인 중...");
-
+  const [status, setStatus] = useState("Checking...");
+  const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
+  
   useEffect(() => {
-    fetch("http://localhost:8000/health")
+    fetch(`${API_URL}/health`)
       .then((res) => res.json())
-      .then((data) => setStatus(`서버 연결됨 · DB 시간 ${data.db_time}`))
-      .catch(() => setStatus("서버 연결 실패"));
+      .then((data) => setStatus(`Server Connected · DB time ${data.db_time}`))
+      .catch(() => setStatus("Server Connection Failed"));
   }, []);
 
   return (
