@@ -12,7 +12,7 @@ ALLOWED_ORIGINS = os.environ.get("ALLOWED_ORIGINS", "http://localhost:5173").spl
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[ALLOWED_ORIGINS],
+    allow_origins= ALLOWED_ORIGINS,
     allow_methods=["*"],
     allow_headers=["*"],
 )
